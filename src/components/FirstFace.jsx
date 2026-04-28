@@ -4,10 +4,10 @@ import Icon03 from '../assets/icons/Pokedex-04.svg';
 import Icon04 from '../assets/icons/Pokedex-05.svg';
 import { PokemonCard } from "../components/card";
 
-export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, onNext }) => {
+export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, onNext, showSpine = true }) => {
 
     return(
-        <div className="h-[800px] w-[510px] flex items-center justify-center">
+        <div className={`h-[800px] flex items-center justify-center ${showSpine ? "w-[510px]" : "w-[450px]"}`}>
             <div className="h-[800px] w-[450px] flex items-center justify-end relative flex-col">
                 <img className="w-[450px] absolute z-0 bottom-0" src={Icon01} alt=''></img>
                 <img className="w-[450px] absolute z-0 bottom-0" src={Icon01} alt=''></img>
@@ -17,7 +17,7 @@ export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, 
                     <div className="w-[85px] h-[85px] bg-[#639cd4] rounded-full shadow-inner shadow-[#6284a9]"></div>
                 </div>
                 <div className="w-auto h-auto absolute z-3 top-4 left-37 flex items-center justify-center gap-3">
-                    <div className="w-[20px] h-[20px] bg-[#a72f34] shadow-inner shadow-[#7b1716]  rounded-full"></div>
+                    <div className="w-[20px] h-[20px] bg-[#a72f34] shadow-inner shadow-[#7b1716] rounded-full"></div>
                     <div className="w-[20px] h-[20px] bg-[#f3e954] shadow-inner shadow-[#d18c46] rounded-full"></div>
                     <div className="w-[20px] h-[20px] bg-[#60b773] rounded-full shadow-inner shadow-[#6a9d5d] rounded-full"></div>
                 </div>
@@ -94,10 +94,12 @@ export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, 
                     </div>
                 </div>
             </div>
+            {showSpine ? (
                 <div className="h-[800px] w-[60px] bg-[#ea5153] flex flex-col relative">
                     <div className="absolute top-0 left-0 w-full h-[3px] bg-[#971e1e] mt-[150px]"></div>
                     <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#971e1e] mb-[75px]"></div>
-            </div>
+                </div>
+            ) : null}
         </div>
     );
 }

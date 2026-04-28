@@ -3,12 +3,13 @@ import Icon02 from '../assets/icons/Pokedex-07.svg';
 import { SearchBar } from "../components/SearchBar";
 import { InfoContent } from "../components/Info";
 
-export const SecondFace = ({ isPokedexOn, currentPokemon, onSearch }) => {
+export const SecondFace = ({ isPokedexOn, currentPokemon, onSearch, layout = "desktop" }) => {
+    const isCompact = layout === "compact";
 
     return(
-        <div className="flex flex-col items-center justify-center relative">
-            <div className="absolute top-0 z-10 right-0">
-                <SearchBar onSearch={onSearch} />
+        <div className={`flex flex-col items-center justify-center relative ${isCompact ? "gap-4" : ""}`}>
+            <div className={isCompact ? "z-10 w-[430px]" : "absolute top-0 z-10 right-0"}>
+                <SearchBar onSearch={onSearch} className={isCompact ? "w-full" : ""} />
             </div>
             <div className="h-[800px] w-[450px] flex items-center justify-center">
                 <div className="h-[800px] w-[450px] flex items-center justify-end relative flex-col">

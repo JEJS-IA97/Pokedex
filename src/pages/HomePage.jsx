@@ -1,14 +1,28 @@
 import { useState, useEffect, useCallback } from "react";
 import { FirstFace } from "../components/FirstFace";
 import { SecondFace } from "../components/SecondFace";
+import { MobilePokedex } from "../components/MobilePokedex";
 import Icon01 from '../assets/icons/Pokedex-08.svg';
-import Pikachu from '../assets/images/Pikachu.png';
-import Pokeball from '../assets/images/Pokeball_02.png';
 
 export const HomePage = () => {
     const [pokedexOn, setPokedexOn] = useState(false);
     const [currentPokemon, setCurrentPokemon] = useState("bulbasaur");
     const [pokemonList, setPokemonList] = useState([]);
+    const [viewport, setViewport] = useState({
+        width: typeof window !== "undefined" ? window.innerWidth : 1440,
+        height: typeof window !== "undefined" ? window.innerHeight : 900,
+    });
+
+    const desktopBaseWidth = 1020;
+    const desktopBaseHeight = 820;
+    const mobileBreakpoint = 700;
+    const shellPadding = viewport.width < 640 ? 16 : 32;
+    const isMobileLayout = viewport.width < mobileBreakpoint;
+    const desktopScale = Math.min(
+        (viewport.width - shellPadding * 2) / desktopBaseWidth,
+        (viewport.height - shellPadding * 2) / desktopBaseHeight,
+        1
+    );
 
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
@@ -18,6 +32,20 @@ export const HomePage = () => {
             setPokemonList(names);
         })
         .catch(err => console.error("Error al cargar lista:", err));
+        }, []);
+
+        useEffect(() => {
+            const handleResize = () => {
+                setViewport({
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                });
+            };
+
+            handleResize();
+            window.addEventListener("resize", handleResize);
+
+            return () => window.removeEventListener("resize", handleResize);
         }, []);
 
         const togglePower = useCallback(() => {
@@ -58,20 +86,53 @@ export const HomePage = () => {
         }
 
     return(
-        <div className="min-h-screen flex items-center justify-center bg-[#ff9b99] relative">
-            <img className="h-[808px] w-auto absolute z-0" src={Icon01} alt=''></img>
-            <FirstFace
-                isPokedexOn={pokedexOn}
-                currentPokemon={currentPokemon}
-                onPowerToggle={togglePower}
-                onPrev={prevPokemon}
-                onNext={nextPokemon}
-            />
-            <SecondFace 
-                isPokedexOn={pokedexOn}
-                currentPokemon={currentPokemon}
-                onSearch={searchPokemon}
-            />
+        <div className="min-h-screen bg-[#ff9b99] relative overflow-x-hidden">
+            {isMobileLayout ? (
+                <MobilePokedex
+                    isPokedexOn={pokedexOn}
+                    currentPokemon={currentPokemon}
+                    onPowerToggle={togglePower}
+                    onPrev={prevPokemon}
+                    onNext={nextPokemon}
+                    onSearch={searchPokemon}
+                />
+            ) : (
+                <div className="flex min-h-screen items-center justify-center p-8">
+                    <div
+                        className="relative"
+                        style={{
+                            width: `${desktopBaseWidth * desktopScale}px`,
+                            height: `${desktopBaseHeight * desktopScale}px`,
+                        }}
+                    >
+                        <div
+                            className="absolute left-1/2 top-0"
+                            style={{
+                                width: `${desktopBaseWidth}px`,
+                                height: `${desktopBaseHeight}px`,
+                                transform: `translateX(-50%) scale(${desktopScale})`,
+                                transformOrigin: "top center",
+                            }}
+                        >
+                            <img className="h-[808px] w-auto absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2" src={Icon01} alt=''></img>
+                            <div className="relative z-10 flex h-full items-center justify-center">
+                                <FirstFace
+                                    isPokedexOn={pokedexOn}
+                                    currentPokemon={currentPokemon}
+                                    onPowerToggle={togglePower}
+                                    onPrev={prevPokemon}
+                                    onNext={nextPokemon}
+                                />
+                                <SecondFace 
+                                    isPokedexOn={pokedexOn}
+                                    currentPokemon={currentPokemon}
+                                    onSearch={searchPokemon}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
