@@ -68,14 +68,14 @@ export const MobilePokedex = ({
                                 <div className='absolute inset-x-0 top-1/2 -translate-y-1/2 w-[94px] h-[32px] bg-[#2d2d2d] rounded-lg flex justify-between'>
                                     <button 
                                     type='button'
-                                    className='w-[42px] h-[32px] cursor-pointer'
+                                    className='w-[42px] h-[32px] cursor-pointer text-[8px] text-white/40'
                                     onClick={onPrev}
-                                    ></button>
+                                    >PREV</button>
                                     <button 
                                     type='button'
-                                    className='w-[42px] h-[32px] cursor-pointer'
+                                    className='w-[42px] h-[32px] cursor-pointer text-[8px] text-white/40'
                                     onClick={onNext}
-                                    ></button>
+                                    >NEXT</button>
                                 </div>
                                 <div className='absolute inset-y-0 left-1/2 -translate-x-1/2 w-[32px] h-[94px] bg-[#2d2d2d] rounded-lg flex flex-col justify-between'>
                                     <button type='button'
@@ -129,7 +129,7 @@ export const MobilePokedex = ({
                         </div>
                     </div>
                     <div className="flex flex-row-reverse justify-center mb-2">
-                        <div className="flex gap-3 absolute rotate-[-30deg] right-0 mr-8 bottom-[75px]">
+                        <div className="flex gap-3 absolute rotate-[-30deg] right-0 mr-8 bottom-[50px]">
                             <div className="w-[8px] h-[65px] bg-[#ba3b3e] rounded-full"></div>
                             <div className="w-[8px] h-[65px] bg-[#ba3b3e] rounded-full"></div>
                             <div className="w-[8px] h-[65px] bg-[#ba3b3e] rounded-full"></div>
