@@ -51,9 +51,9 @@ export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, 
                     <div className="h-auto flex items-center gap-3">
                         <button 
                         type='button'
-                        className='w-[55px] h-[55px] bg-[#51504e] rounded-full shadow-sm shadow-[#3f3634] border  border-[#3f3634] cursor-pointer'
+                        className='w-[55px] h-[55px] bg-[#51504e] rounded-full shadow-sm shadow-[#3f3634] border border-[#3f3634] cursor-pointer text-[8px] text-white/40'
                         onClick={onPowerToggle}
-                        ></button>
+                        >ON / OFF</button>
                         <div className='w-[70px] h-[20px] bg-[#a72f34] rounded-full border border-[#7b1716] border-[2px]'></div>
                         <div className='w-[70px] h-[20px] bg-[#639cd4] rounded-full border border-[#3d283a] border-[2px]'></div>
                     </div>
@@ -69,14 +69,14 @@ export const FirstFace = ({ isPokedexOn, currentPokemon, onPowerToggle, onPrev, 
                             <div className='absolute inset-x-0 top-1/2 -translate-y-1/2 w-[120px] h-[35px] bg-[#51504e] rounded-lg flex justify-between'>
                                 <button 
                                 type='button'
-                                className='w-[42px] h-[35px] cursor-pointer'
+                                className='w-[42px] h-[35px] cursor-pointer text-[8px] text-white/40'
                                 onClick={onPrev}
-                                ></button>
+                                >PREV</button>
                                 <button 
                                 type='button'
-                                className='w-[42px] h-[35px] cursor-pointer'
+                                className='w-[42px] h-[35px] cursor-pointer text-[8px] text-white/40'
                                 onClick={onNext}
-                                ></button>
+                                >NEXT</button>
                             </div>
                             <div className='absolute inset-y-0 left-1/2 -translate-x-1/2 w-[35px] h-[120px] bg-[#51504e] rounded-lg flex flex-col justify-between'>
                             <button type='button'

@@ -59,7 +59,7 @@ export function InfoContent({ pokemonName, compact = false, hideName = false }) 
             <div className="flex gap-2 justify-center items-center">
                 {!hideName ? <h2 className="capitalize font-bold text-[16px]">{pokemon.name}</h2> : null}
                 <p className="text-sm font-bold">#{pokemon.id.toString().padStart(3, "0")}</p>
-                <div className="flex">
+                <div className="flex gap-1">
                     {pokemon.types.map((t) => (
                         <span key={t.type.name} className="capitalize text-[15px] bg-white/20 px-2 py-0.5 rounded-full font-bold">
                             {t.type.name}

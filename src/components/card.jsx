@@ -43,24 +43,24 @@ export function PokemonCard({ pokemonName, compact = false }) {
     }
 
     return (
-        <div className="h-[240px] w-[310px] flex">
-            <div className="h-[240px] w-[240px] overflow-hidden">
+        <div className="h-[240px] w-auto flex gap-1 items-center justify-center">
+            <div className="flex h-[220px] items-center justify-center overflow-hidden rounded-lg bg-black/10">
                 <img
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-contain p-2"
                     src={pokemon.sprites.front_default}
                     alt={pokemon.name}
                     onClick={() => setShowPixel(!showPixel)}
                 />
             </div>
 
-            <div className="flex flex-col">
-                <div className="h-[80px] w-[80px] overflow-hidden">
+            <div className="flex flex-col gap-1">
+                <div className="h-[70px] w-[70px] overflow-hidden bg-black/10">
                     <img className="h-full w-full object-cover" src={pokemon.sprites.back_default} alt="vista trasera" />
                 </div>
-                <div className="h-[80px] w-[80px] overflow-hidden">
+                <div className="h-[70px] w-[70px] overflow-hidden bg-black/10">
                     <img className="h-full w-full object-cover" src={pokemon.sprites.front_shiny} alt="shiny frontal" />
                 </div>
-                <div className="h-[80px] w-[80px] overflow-hidden">
+                <div className="h-[70px] w-[70px] overflow-hidden bg-black/10">
                     <img className="h-full w-full object-cover" src={pokemon.sprites.back_shiny} alt="shiny trasera" />
                 </div>
             </div>

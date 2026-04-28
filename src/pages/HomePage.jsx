@@ -15,12 +15,18 @@ export const HomePage = () => {
 
     const desktopBaseWidth = 1020;
     const desktopBaseHeight = 820;
+    const mobileBaseWidth = 420;
+    const mobileBaseHeight = 800;
     const mobileBreakpoint = 700;
     const shellPadding = viewport.width < 640 ? 16 : 32;
     const isMobileLayout = viewport.width < mobileBreakpoint;
     const desktopScale = Math.min(
         (viewport.width - shellPadding * 2) / desktopBaseWidth,
         (viewport.height - shellPadding * 2) / desktopBaseHeight,
+        1
+    );
+    const mobileScale = Math.min(
+        (viewport.width - 8) / mobileBaseWidth,
         1
     );
 
@@ -88,14 +94,34 @@ export const HomePage = () => {
     return(
         <div className="min-h-screen bg-[#ff9b99] relative overflow-x-hidden">
             {isMobileLayout ? (
-                <MobilePokedex
-                    isPokedexOn={pokedexOn}
-                    currentPokemon={currentPokemon}
-                    onPowerToggle={togglePower}
-                    onPrev={prevPokemon}
-                    onNext={nextPokemon}
-                    onSearch={searchPokemon}
-                />
+                <div className="flex w-full justify-center overflow-x-hidden py-2">
+                    <div
+                        className="relative"
+                        style={{
+                            width: `${mobileBaseWidth * mobileScale}px`,
+                            height: `${mobileBaseHeight * mobileScale}px`,
+                        }}
+                    >
+                        <div
+                            className="absolute left-1/2 top-0"
+                            style={{
+                                width: `${mobileBaseWidth}px`,
+                                height: `${mobileBaseHeight}px`,
+                                transform: `translateX(-50%) scale(${mobileScale})`,
+                                transformOrigin: "top center",
+                            }}
+                        >
+                            <MobilePokedex
+                                isPokedexOn={pokedexOn}
+                                currentPokemon={currentPokemon}
+                                onPowerToggle={togglePower}
+                                onPrev={prevPokemon}
+                                onNext={nextPokemon}
+                                onSearch={searchPokemon}
+                            />
+                        </div>
+                    </div>
+                </div>
             ) : (
                 <div className="flex min-h-screen items-center justify-center p-8">
                     <div
